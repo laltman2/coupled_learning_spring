@@ -16,7 +16,7 @@ const int steady_window_length = 30;
 int steady_sensor_values[steady_window_length];
 int steady_threshold = 5;
 
-void filter::sensor_LPF(int flex) {
+int filter::sensor_LPF(int flex, int cumulative_value) {
   //Take moving average (acts as Low pass filter) on the flex sensor as it is prone to noise.
   sensor_values[iter] = flex;
   if (iter < LPF_window_length - 1) {
@@ -29,6 +29,7 @@ void filter::sensor_LPF(int flex) {
     }
     cumulative_value = cumulative_value / LPF_window_length;
   }
+  return cumulative_value;
 }
 
 void filter::reset_sensor_vals(){

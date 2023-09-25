@@ -7,7 +7,7 @@ class filter{
 
 public:
   //sensor read out with LPF
-  void sensor_LPF(int flex);
+  int sensor_LPF(int flex, int cumulative_value);
   void reset_sensor_vals();
   // function to obtain readout for flexsensor once value is steady
   void steadyflex(int cflex); 
@@ -20,7 +20,7 @@ private:
   int sensor_values[5];
   int iter = 0;
   // flex sensor read value after LPF
-  int cumulative_value = 0;
+  // int cumulative_value = 0;
 
   //flex sensor steady state values
   const int steady_window_length = 30;
